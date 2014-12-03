@@ -21,7 +21,7 @@ def set_disqus_developer(context, disqus_developer):
 # Set the disqus_identifier variable to some unique value. Defaults to page's URL
 @register.simple_tag(takes_context=True)
 def set_disqus_identifier(context, *args):
-    context['disqus_identifier'] = "".join(args)
+    context['disqus_identifier'] = "".join('{}'.format(args))
     return ""
 
 # Set the disqus_url variable to some value. Defaults to page's location
@@ -63,10 +63,14 @@ def disqus_dev(context):
     development server if settings.DEBUG is True.
     """
     if settings.DEBUG:
+        try:
+            protocol = settings.DISQUS_PROTOCOL
+        except AttributeError:
+            protocol = 'http'
         return """<script type="text/javascript">
     var disqus_developer = 1;
-    var disqus_url = 'http://%s%s';
-</script>""" % (Site.objects.get_current().domain, context['request'].path)
+    var disqus_url = '%s://%s%s';
+</script>""" % (protocol, Site.objects.get_current().domain, context['request'].path)
     return ""
 
 @register.simple_tag(takes_context=True)
