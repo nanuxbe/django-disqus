@@ -4,11 +4,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-disqus',
-    version='0.4.3',
+    version='0.5',
     description='Export comments and integrate DISQUS into your Django website',
-    author='Arthur Koziel',
-    author_email='arthur@arthurkoziel.com',
-    url='http://arthurk.github.com/django-disqus/',
+    author='Emmanuelle Delescolle',
+    author_email='emma@lasolution.be',
+    url='https://github.com/nanuxbe/django-disqus/commits/master',
     license='New BSD License',
     classifiers=[
       'Framework :: Django',
